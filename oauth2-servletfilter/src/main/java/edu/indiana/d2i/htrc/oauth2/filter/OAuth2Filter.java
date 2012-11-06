@@ -22,6 +22,8 @@
 package edu.indiana.d2i.htrc.oauth2.filter;
 
 
+import org.wso2.carbon.identity.oauth2.dto.xsd.OAuth2TokenValidationRequestDTO;
+
 import javax.servlet.*;
 import java.io.IOException;
 
@@ -32,7 +34,26 @@ public class OAuth2Filter implements Filter {
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        String accessToken = servletRequest.getParameter("accessToken");
+        OAuth2ServiceClient client = new OAuth2ServiceClient();
 
+        if(accessToken == null || accessToken.trim().length() == 0){
+            // Throw error
+        }
+
+        OAuth2TokenValidationRequestDTO  oauthReq = new OAuth2TokenValidationRequestDTO();
+        oauthReq.setAccessToken(accessToken);
+        oauthReq.setTokenType("bearer");
+
+        try{
+            if(!client.validateAuthenticationRequest(oauthReq)){
+              // throw error
+            }
+        } catch (Exception e) {
+            // throw error
+        }
+
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     public void destroy() {
