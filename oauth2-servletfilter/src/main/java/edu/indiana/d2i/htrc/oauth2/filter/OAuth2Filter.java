@@ -39,6 +39,7 @@ public class OAuth2Filter implements Filter {
 
         if(accessToken == null || accessToken.trim().length() == 0){
             // Throw error
+            throw new RuntimeException("Access token not found");
         }
 
         OAuth2TokenValidationRequestDTO  oauthReq = new OAuth2TokenValidationRequestDTO();

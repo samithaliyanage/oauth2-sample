@@ -50,6 +50,7 @@
           <artifactId>org.wso2.carbon.utils</artifactId>
           <version>4.0.0</version>
       </dependency>
+
   </dependencies>
     <repositories>
         <repository>

@@ -10,11 +10,16 @@
     OAuthAuthzResponse authzResponse = null;
     String callback = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/oauth2-client-webapp";
 
+
     if (code == null) {
+        try{
         authzResponse = OAuthAuthzResponse.oauthCodeAuthzResponse(request);
         code = authzResponse.getCode();
         if (code != null) {
             session.setAttribute(Constants.CODE, code);
+        }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 %>

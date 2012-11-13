@@ -5,3 +5,20 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 </web-app>
+
+<filter>
+<filter-name>OAuth2Filter</filter-name>
+<filter-class>edu.indiana.d2i.htrc.oauth2.filter.OAuth2Filter</filter-class>
+</filter>
+<filter-mapping>
+<filter-name>OAuth2Filter</filter-name>
+<url-pattern>/OAuth2Resource</url-pattern>
+</filter-mapping>
+<servlet>
+<servlet-name>OAuth2Resource</servlet-name>
+<servlet-class>edu.indiana.d2i.htrc.oauth2.resource.OAuth2Resource</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>OAuth2Resource</servlet-name>
+<url-pattern>/OAuth2Resource</url-pattern>
+</servlet-mapping>
